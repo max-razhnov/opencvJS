@@ -7,7 +7,7 @@ body {
     font-family: "HelveticaNeueCyr";
     background: #000;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -130,6 +130,7 @@ h1 {
     width: 250px;
     outline: 1px solid #fff;
 }
+
 .channel-1,
 .channel-2,
 .channel-3 {
@@ -138,4 +139,8 @@ h1 {
 
 .visible {
     display: none;
+}
+
+#btn-reset {
+    color: #F00;
 }
