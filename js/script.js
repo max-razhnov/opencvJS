@@ -12,6 +12,7 @@ const BTN_TRANSLATION = document.getElementById("btn-translation");
 const BTN_ROTATE = document.getElementById("btn-rotate");
 const BTN_SCALE = document.getElementById("btn-scale");
 const BTN_SHIFT = document.getElementById("btn-shift");
+const BTN_RESET = document.getElementById("btn-reset");
 
 //user buttons
 const BTN_UPLOAD_FILE = document.getElementsByClassName("item-upload")[0];
@@ -23,7 +24,7 @@ const imgElement = document.getElementById("imageSrc");
 
 BTN_UPLOAD_FILE.addEventListener("click", () => {
   fileInput.click();
-  // upload();
+
 });
 
 fileInput.addEventListener("change", (event) => {
@@ -37,6 +38,17 @@ let imgChannel1 = null;
 let imgChannel2 = null;
 let imgChannel3 = null;
 
+let scaleX = 1;
+let scaleY = 1;
+let skewX = 0;
+let skewY = 0;
+let translateX = 0;
+let translateY = 0;
+let angleRotation = 0;
+let originX = 0;
+let originY = 0;
+
+
 imgElement.onload = () => {
   src = cv.imread(imgElement);
   dst = new cv.Mat();
@@ -44,13 +56,22 @@ imgElement.onload = () => {
   if (str === 'jpg' || str === 'png' || str === 'gif' || str === 'tiff') {
     cv.imshow("outputCanvas_SRC_IMG", src);
     FileName = fileInput.value;
-    console.log(src.type())
   } else {
     alert("Нужно загрузить изображение");
   }
+  if (dst !== null) {
+    let canvasMain = document.getElementById("outputCanvas_DST_IMG");
+    let canvasCh_1 = document.getElementById("outputCanvasChannel_1");
+    let canvasCh_2 = document.getElementById("outputCanvasChannel_2");
+    let canvasCh_3 = document.getElementById("outputCanvasChannel_3");
+    canvasMain.getContext('2d').clearRect(0, 0, canvasMain.width, canvasMain.height);
+    canvasCh_1.getContext('2d').clearRect(0, 0, canvasCh_1.width, canvasCh_1.height);
+    canvasCh_2.getContext('2d').clearRect(0, 0, canvasCh_2.width, canvasCh_2.height);
+    canvasCh_3.getContext('2d').clearRect(0, 0, canvasCh_3.width, canvasCh_3.height);
+  }
 };
 
-BTN_SAVE_FILE.removeEventListener("click", saveDefault)
+BTN_SAVE_FILE.removeEventListener("click", saveDefault);
 BTN_RGB.removeEventListener("click", rgbDisplay);
 BTN_CMY.removeEventListener("click", cmyDisplay);
 BTN_GRAY.removeEventListener("click", grayDisplay);
@@ -61,10 +82,11 @@ BTN_CHANNEL_1.removeEventListener("click", saveChannel_1);
 BTN_CHANNEL_2.removeEventListener("click", saveChannel_2);
 BTN_CHANNEL_3.removeEventListener("click", saveChannel_3);
 
-// BTN_TRANSLATION.removeEventListener("click",);
-// BTN_ROTATE.removeEventListener("click");
-// BTN_SCALE.removeEventListener("click");
-// BTN_SHIFT.removeEventListener("click");
+BTN_TRANSLATION.removeEventListener("click", translate);
+BTN_ROTATE.removeEventListener("click", rotate);
+BTN_SCALE.removeEventListener("click", scale);
+BTN_SHIFT.removeEventListener("click", shift);
+BTN_RESET.removeEventListener("click", reset);
 
 BTN_SAVE_FILE.addEventListener("click", saveDefault);
 BTN_RGB.addEventListener("click", rgbDisplay);
@@ -77,6 +99,12 @@ BTN_YUV.addEventListener("click", yuvDisplay);
 BTN_CHANNEL_1.addEventListener("click", saveChannel_1);
 BTN_CHANNEL_2.addEventListener("click", saveChannel_2);
 BTN_CHANNEL_3.addEventListener("click", saveChannel_3);
+
+BTN_SCALE.addEventListener("click", scale);
+BTN_TRANSLATION.addEventListener("click", translate);
+BTN_SHIFT.addEventListener("click", shift);
+BTN_ROTATE.addEventListener("click", rotate);
+BTN_RESET.addEventListener("click", reset);
 
 function saveChannel_1() {
   let canvas = document.getElementById("outputCanvasChannel_1");
@@ -143,15 +171,6 @@ function saveDefault() {
     }
   } else {
     alert('Сначала загрузите изображение, потом сохраняйте!');
-  }
-}
-
-function upload() {
-  debugger
-  if (src === null) {
-    alert('Загрузите пожалуйста изображение!');
-  } else {
-    cv.imshow("outputCanvas_DST_IMG", src);
   }
 }
 
@@ -309,14 +328,62 @@ function yellowChannel(imgYellow) {
   return imgYellow;
 }
 
-BTN_SCALE.addEventListener("click", scale);
+let strTransform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})  skew(${skewX}deg, ${skewY}deg) rotate(${angleRotation}deg)`;
+
+function transformation(translateX, translateY, scaleX, scaleY, skewX, skewY, angleRotation) {
+  return strTransform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})  skew(${skewX}deg, ${skewY}deg) rotate(${angleRotation}deg)`;
+}
 
 function scale() {
-  if (src === null) {
+  if (src === null || (dst.cols === 0 && dst.rows === 0)) {
     alert('Загрузите пожалуйста изображение!');
   } else {
-    let mat = new cv.Mat(2, 3, src.type());
-    mat.put(0, 0, 2, 0, 10, 0, 2, 10);
-    // cv.warpAffine(dst, dst,);
+    scaleX = prompt('Введите координату х для масштабирования: ', 3);
+    scaleY = prompt('Введите координату у для масштабирования: ', 1.2);
+    document.getElementById("outputCanvas_DST_IMG").style.transform = `${transformation(translateX, translateY, scaleX, scaleY, skewX, skewY, angleRotation)}`;
+  }
+}
+
+function translate() {
+  if (src === null || (dst.cols === 0 && dst.rows === 0)) {
+    alert('Загрузите пожалуйста изображение!');
+  } else {
+    translateX = prompt('Введите координату х(px) для перемещания: ', 20);
+    translateY = prompt('Введите координату у(px) для перемещения: ', 50);
+    document.getElementById("outputCanvas_DST_IMG").style.transform = `${transformation(translateX, translateY, scaleX, scaleY, skewX, skewY, angleRotation)}`;
+  }
+}
+
+function shift() {
+  if (src === null || (dst.cols === 0 && dst.rows === 0)) {
+    alert('Загрузите пожалуйста изображение!');
+  } else {
+    skewX = prompt('Введите координату х для сдвига: ', 1);
+    skewY = prompt('Введите координату у для сдвига: ', 0);
+    document.getElementById("outputCanvas_DST_IMG").style.transform = `${transformation(translateX, translateY, scaleX, scaleY, skewX, skewY, angleRotation)}`;
+  }
+}
+
+function rotate() {
+  if (src === null || (dst.cols === 0 && dst.rows === 0)) {
+    alert('Загрузите пожалуйста изображение!');
+  } else {
+    angleRotation = prompt("Введите угол для поворота: ", 20);
+    document.getElementById("outputCanvas_DST_IMG").style.transform = `${transformation(translateX, translateY, scaleX, scaleY, skewX, skewY, angleRotation)}`;
+    let originX = prompt('Введите начальную точку поворота по оси х: ', 50);
+    let originY = prompt('Введите начальную точку поворота по оси y: ', 50);
+    document.getElementById("outputCanvas_DST_IMG").style.transformOrigin = `${originX}px ${originY}px`;
+  }
+}
+
+function reset() {
+  if (src === null || (dst.cols === 0 && dst.rows === 0)) {
+    alert('Загрузите пожалуйста изображение!');
+  } else {
+    scaleX = scaleY = 1;
+    translateX = translateY = skewX = skewY = angleRotation = originX = originY = 0;
+    let dstCanvas = document.getElementById("outputCanvas_DST_IMG");
+    dstCanvas.style.transform = `${transformation(translateX, translateY, scaleX, scaleY, skewX, skewY, angleRotation)}`;
+    dstCanvas.style.transformOrigin = `${originX}px ${originY}px`;
   }
 }
