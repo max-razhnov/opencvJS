@@ -1,0 +1,147 @@
+@font-face {
+    font-family: "HelveticaNeueCyr";
+    src: url("../../../../Fonts/HelveticaNeueCyr/HelveticaNeueCyr-Medium.ttf") format("ttf");
+}
+
+body {
+    font-family: "HelveticaNeueCyr";
+    background: #000;
+    margin: 0;
+    overflow: hidden;
+}
+
+h1 {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+#root {
+    padding: 0 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.button__items {
+    width: 15%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#imageSrc {
+    display: none;
+}
+
+.user-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buttons {
+    font-size: 16px;
+    padding: 0;
+    margin: 10px 0 10px 0;
+    height: 30px;
+    width: 80%;
+    box-sizing: border-box;
+    font-family: "HelveticaNeueCyr";
+    background: rgba(255, 255, 255, 0.0);
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+}
+
+
+.buttons:hover {
+    color: #000;
+    background: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+}
+
+
+.buttons:active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.0);
+}
+
+
+.item-save,
+.item-upload {
+    width: 45%;
+}
+
+.btn-CMY,
+.btn-GRAY,
+.btn-HSL,
+.btn-HSV,
+.btn-YUV {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    color: #fff;
+}
+
+.canvas__items {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.src-img,
+.dst-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    outline: 1px solid #fff;
+}
+
+#outputCanvas_SRC_IMG,
+#outputCanvas_DST_IMG {
+    position: relative;
+    height: 300px;
+    width: 300px;
+    outline: 1px solid #fff;
+}
+
+.dst_canv {
+    width: 70%;
+}
+
+.channels {
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#outputCanvasChannel_1,
+#outputCanvasChannel_2,
+#outputCanvasChannel_3 {
+    height: 250px;
+    width: 250px;
+    outline: 1px solid #fff;
+}
+.channel-1,
+.channel-2,
+.channel-3 {
+    text-align: center;
+}
+
+.visible {
+    display: none;
+}
+.checkbox-wrapper {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    color: #fff
+}
