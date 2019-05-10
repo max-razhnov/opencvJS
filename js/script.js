@@ -387,3 +387,31 @@ function reset() {
     dstCanvas.style.transformOrigin = `${originX}px ${originY}px`;
   }
 }
+
+const BTN_GAUS = document.getElementById("gaus");
+BTN_GAUS.addEventListener("click", gaus);
+
+function gaus() {
+  // let canvas = document.getElementById("outputCanvas_DST_IMG");
+  // let ctx = canvas.getContext('2d');
+  // let data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  // let px = data.data;
+  // let tmpPx = new Uint8ClampedArray(px.length);
+  // for (let i = 0; i < px.length; i++) {
+  //   tmpPx[i] = px[i];
+  //   px[i] = (tmpPx[i]
+  //     + (tmpPx[i - 4] || tmpPx[i])
+  //     + (tmpPx[i + 4] || tmpPx[i])
+  //     + (tmpPx[i - 4 * data.width] || tmpPx[i])
+  //     + (tmpPx[i + 4 * data.width] || tmpPx[i])
+  //     + (tmpPx[i - 4 * data.width - 4] || tmpPx[i])
+  //     + (tmpPx[i + 4 * data.width + 4] || tmpPx[i])
+  //     + (tmpPx[i - 4 * data.width + 4] || tmpPx[i])
+  //     + (tmpPx[i + 4 * data.width - 4] || tmpPx[i])
+  //   ) / 9;
+  // }
+  let ksize = new cv.Size(9, 9);
+  cv.GaussianBlur(src, dst, ksize, 0, 0, cv.BORDER_DEFAULT);
+  cv.imshow("outputCanvas_DST_IMG", dst);
+  // ctx.putImageData(data, 0, 0);
+}
