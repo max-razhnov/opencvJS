@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css?family=Muli:400,400i,600,700");
+
+body {
+    font-family: "Muli", sans-serif;
+    background: #f0f7fa;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+#root {
+    padding: 0 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.button__items {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#imageSrc {
+    display: none;
+}
+
+.user-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    background: #1883b5;
+    font-family: "Muli", sans-serif;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    width: 110px;
+    height: 30px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    margin: 4px 10px;
+    border: none;
+    outline: none;
+}
+
+
+.buttons:hover {
+    background: #16719c;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+
+.buttons:active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.0);
+}
+
+
+.item-save,
+.item-upload {
+    width: 45%;
+}
+
+.btn-CMY,
+.btn-GRAY,
+.btn-HSL,
+.btn-HSV,
+.btn-YUV {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    color: #1883b5;
+}
+
+.canvas__items {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+}
+
+.src-img,
+.dst-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#outputCanvas_SRC_IMG,
+#outputCanvas_DST_IMG {
+    position: relative;
+    height: 300px;
+    width: 300px;
+}
+
+.dst_canv {
+    width: 70%;
+}
+
+.channels {
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#outputCanvasChannel_1,
+#outputCanvasChannel_2,
+#outputCanvasChannel_3 {
+    height: 250px;
+    width: 250px;
+}
+
+.channel-1,
+.channel-2,
+.channel-3 {
+    text-align: center;
+}
+
+.visible {
+    display: none;
+}
+
+#btn-reset {
+    color: #F00;
+}
+.checkbox-wrapper {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    color: #1883b5;
+    margin: 6px 10px;
+}
+
+.checkbox-wrapper > input {
+    width: 20px;
+    height: 20px;
+}
+
+.app-title {
+    width: 100%;
+    text-align: center;
+    background: #1883b5;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}

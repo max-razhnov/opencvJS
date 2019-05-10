@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>POMI Labs</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="img/favicon-lamp.png">
+</head>
+
+<body>
+    <header>
+        <h1 class="app-title">JavaScript openCV labs</h1>
+    </header>
+    <main id="root">
+        <nav class="button__items">
+            <div class="user-btn">
+                <button class="buttons item-upload">
+                    <span id="customTxt">Upload image</span>
+                    <img id="imageSrc" alt="No Image" />
+                    <input type="file" id="fileInput" name="file" style="display: none;" />
+                </button>
+                <button class="buttons item-save">Save file</button>
+            </div>
+            <button id="btn-RGB" class="buttons">RGB</button>
+            <button id="btn-CMY" class="buttons">RGB
+                <span class="arrow">→</span> CMY</button>
+            <button id="btn-GRAY" class="buttons">RGB
+                <span class="arrow">→</span> Gray</button>
+            <button id="btn-HSV" class="buttons">RGB
+                <span class="arrow">→</span> HSV</button>
+            <button id="btn-HSL" class="buttons">RGB
+                <span class="arrow">→</span> HSL</button>
+            <button id="btn-YUV" class="buttons">RGB
+                <span class="arrow">→</span> YUV</button>
+
+            <button id="btn-Gause" class="buttons">Gause</button>
+            <button id="btn-Canny" class="buttons">
+                Canny
+            </button>
+            <button id="btn-Roberts" class="buttons">
+                Roberts
+            </button>
+            <button id="btn-Prewitt-x" class="buttons">
+                Prewitt-X
+            </button>
+            <button id="btn-Prewitt-y" class="buttons">
+                Prewitt-Y
+            </button>
+            <button id="btn-Sobel-x" class="buttons">
+                Sobel-X
+            </button>
+            <button id="btn-Sobel-y" class="buttons">
+                Sobel-Y
+            </button>
+            <button id="btn-Laplas" class="buttons">
+                Laplas
+            </button>
+            <button id="btn-scale" class="buttons">SCALE</button>
+            <button id="btn-translation" class="buttons">TRANSLATE</button>
+            <button id="btn-rotate" class="buttons">ROTATE</button>
+            <button id="btn-shift" class="buttons">SHIFT</button>
+            <button id="btn-reset" class="buttons">RESET</button>
+
+
+            <div class="checkbox-wrapper">
+                Multiple filters
+                <input type="checkbox" id="multipleFilters" name="multipleFilters" class="checkbox">
+            </div>
+        </nav>
+        <section class="canvas__items">
+            <div class="src-img">
+                <h2 class="title">Source image</h2>
+                <canvas id="outputCanvas_SRC_IMG"></canvas>
+            </div>
+            <div class="dst_canv">
+                <div class="dst-img">
+                    <h2 class="title">Converted image</h2>
+                    <canvas id="outputCanvas_DST_IMG">
+                    </canvas>
+                </div>
+                <h2 class="title visible">Channels</h2>
+                <div class="channels visible">
+                    <div class="channel-1">
+                        <canvas id="outputCanvasChannel_1"></canvas>
+                        <button id="channel_btn-1" class="buttons">Save</button>
+                    </div>
+                    <div class="channel-2">
+                        <canvas id="outputCanvasChannel_2"></canvas>
+                        <button id="channel_btn-2" class="buttons">Save</button>
+
+                    </div>
+                    <div class="channel-3">
+                        <canvas id="outputCanvasChannel_3"></canvas>
+                        <button id="channel_btn-3" class="buttons">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- <script src="https://www.lactame.com/lib/image-js/0.21.2/image.min.js"></script>  -->
+    <script src="https://cdn.rawgit.com/davidsonfellipe/lena.js/master/dist/lena.js"></script>
+    <script src="../opencvJS/opencv.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
