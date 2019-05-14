@@ -144,29 +144,22 @@ function saveChannel_3() {
 
 function saveDefault() {
   let canvas = document.getElementById("outputCanvas_DST_IMG");
-  if (dst !== null) {
-    if (dst.rows !== 0 && dst.cols !== 0) {
-      let canvasData = canvas.toDataURL("image/jpg");
-      let link = document.createElement("a");
-      link.href = canvasData;
-      link.download = `${FileName}`;
-      link.click();
-    } else {
-      alert('Незачем сохранять пустое изображение!')
-    }
-  } else {
-    alert('Сначала загрузите изображение, потом сохраняйте!');
-  }
+  // if (dst !== null) {
+  //   if (dst.rows !== 0 && dst.cols !== 0) {
+  let canvasData = canvas.toDataURL("image/jpg");
+  let link = document.createElement("a");
+  link.href = canvasData;
+  link.download = `${FileName}`;
+  link.click();
+  // } else {
+  //   alert('Незачем сохранять пустое изображение!')
+  //   }
+  // } else {
+  //   alert('Сначала загрузите изображение, потом сохраняйте!');
+  // }
 }
 
-function upload() {
-  debugger
-  if (src === null) {
-    alert('Загрузите пожалуйста изображение!');
-  } else {
-    cv.imshow("outputCanvas_DST_IMG", src);
-  }
-}
+
 
 function rgbDisplay() {
   if (src === null) {
@@ -322,7 +315,7 @@ function yellowChannel(imgYellow) {
   return imgYellow;
 }
 
-BTN_SCALE.addEventListener("click", scale);
+// BTN_SCALE.addEventListener("click", scale);
 
 function scale() {
   if (src === null) {
@@ -330,7 +323,6 @@ function scale() {
   } else {
     let mat = new cv.Mat(2, 3, src.type());
     mat.put(0, 0, 2, 0, 10, 0, 2, 10);
-    // cv.warpAffine(dst, dst,);
   }
 }
 
@@ -339,28 +331,30 @@ function gauseDisplay() {
   if (src === null) {
     alert('Загрузите пожалуйста изображение!');
   } else {
-    let filter = LenaJS["gaussian"];
-    if (isConvertedImage && multipleFilters.checked) {
-      LenaJS.redrawCanvas(filteredImageCanvas, filter);
-    } else {
-      LenaJS.filterImage(filteredImageCanvas, filter, originalImage)
-    }
+    let props = +prompt('Введите коэфицент веса: ', 9);
+    let ksize = new cv.Size(props, props);
+    cv.GaussianBlur(src, dst, ksize, 0, 0, cv.BORDER_DEFAULT);
+    cv.imshow('outputCanvas_DST_IMG', dst);
+    dst = dst.clone();
     isConvertedImage = true;
   }
 }
+
 function cannyDisplay() {
   if (src === null) {
     alert('Загрузите пожалуйста изображение!');
   } else {
-    let filter = LenaJS["canny"];
-    if (isConvertedImage && multipleFilters.checked) {
-      LenaJS.redrawCanvas(filteredImageCanvas, filter);
-    } else {
-      LenaJS.filterImage(filteredImageCanvas, filter, originalImage)
-    }
+    let threshold1 = +prompt('Введите 1 значение порога: ', 50);
+    let threshold2 = +prompt('Введите 2 значение порога: ', 100);
+    let apertureSize = +prompt('', 3);
+
+    cv.Canny(src, dst, threshold1, threshold2, apertureSize, false);
+    cv.imshow('outputCanvas_DST_IMG', dst);
+    dst = dst.clone();
     isConvertedImage = true;
   }
 }
+
 function robertsDisplay() {
   if (src === null) {
     alert('Загрузите пожалуйста изображение!');
@@ -374,6 +368,7 @@ function robertsDisplay() {
     isConvertedImage = true;
   }
 }
+
 function prewittHorizontalDisplay() {
   if (src === null) {
     alert('Загрузите пожалуйста изображение!');
@@ -387,6 +382,7 @@ function prewittHorizontalDisplay() {
     isConvertedImage = true;
   }
 }
+
 function prewittVerticalDisplay() {
   if (src === null) {
     alert('Загрузите пожалуйста изображение!');
@@ -400,6 +396,7 @@ function prewittVerticalDisplay() {
     isConvertedImage = true;
   }
 }
+
 function sobelHorizontalDisplay() {
   if (src === null) {
     alert('Загрузите пожалуйста изображение!');
@@ -413,6 +410,7 @@ function sobelHorizontalDisplay() {
     isConvertedImage = true;
   }
 }
+
 function sobelVerticalDisplay() {
   if (src === null) {
     alert('Загрузите пожалуйста изображение!');
