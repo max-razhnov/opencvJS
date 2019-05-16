@@ -1,81 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>Laboratornaya rabota POMI</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="icon" href="../img/facebook.png" />
-  </head>
-  <body>
-    <header>
-      <h1>OpenCV JS Lab</h1>
-    </header>
-    <main id="root">
-      <nav class="button__items">
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="icon" href="../img/facebook.png"/>
+</head>
+<body>
+<header>
+    <h1>OpenCV JS Lab</h1>
+</header>
+<main id="root">
+    <nav class="button__items">
         <div class="user-btn">
-          <button class="buttons item-upload">
-            <span id="customTxt">Upload image</span>
-            <img id="imageSrc" alt="No Image" />
-            <input
-              type="file"
-              id="fileInput"
-              name="file"
-              style="display: none;"
-            />
-          </button>
-          <button class="buttons item-save">Save file</button>
+            <button class="buttons item-upload">
+                <span id="customTxt">Upload image</span>
+                <img id="imageSrc" alt="No Image"/>
+                <input
+                        type="file"
+                        id="fileInput"
+                        name="file"
+                        style="display: none;"
+                />
+            </button>
+            <button class="buttons item-save">Save file</button>
         </div>
         <button id="btn-RGB" class="buttons">RGB</button>
         <button id="btn-CMY" class="buttons">
-          RGB <span class="arrow">→</span> CMY
+            RGB <span class="arrow">→</span> CMY
         </button>
-        <button id="btn-GRAY" class="buttons">
-          RGB <span class="arrow">→</span> Gray
-        </button>
-        <button id="btn-HSV" class="buttons">
-          RGB <span class="arrow">→</span> HSV
-        </button>
-        <button id="btn-HSL" class="buttons">
-          RGB <span class="arrow">→</span> HSL
-        </button>
-        <button id="btn-YUV" class="buttons">
-          RGB <span class="arrow">→</span> YUV
-        </button>
-        <button id="btn-scale" class="buttons">SCALE</button>
-        <button id="btn-translation" class="buttons">TRANSLATE</button>
-        <button id="btn-rotate" class="buttons">ROTATE</button>
-        <button id="btn-shift" class="buttons">SHIFT</button>
+        <!--<button id="btn-GRAY" class="buttons">-->
+            <!--RGB <span class="arrow">→</span> Gray-->
+        <!--</button>-->
+        <!--<button id="btn-HSV" class="buttons">-->
+            <!--RGB <span class="arrow">→</span> HSV-->
+        <!--</button>-->
+        <!--<button id="btn-HSL" class="buttons">-->
+            <!--RGB <span class="arrow">→</span> HSL-->
+        <!--</button>-->
+        <!--<button id="btn-YUV" class="buttons">-->
+            <!--RGB <span class="arrow">→</span> YUV-->
+        <!--</button>-->
+        <button id="btn-prep" class="buttons">trans1</button>
+        <button id="btn-lostLayout" class="buttons">trans2</button>
+        <button id="btn-saveLayout" class="buttons">trans3</button>
+        <button id="btn-trans4" class="buttons">trans4</button>
+        <button id="btn-trans5" class="buttons">trans5</button>
+        <button id="btn-trans6" class="buttons">trans6</button>
+        <button id="btn-trans7" class="buttons">trans7</button>
+        <button id="btn-trans8" class="buttons">trans8</button>
+        <button id="btn-trans9" class="buttons">trans9</button>
+        <button id="btn-trans10" class="buttons">trans10</button>
+
         <button id="btn-reset" class="buttons">RESET</button>
-      </nav>
-      <section class="canvas__items">
+    </nav>
+    <section class="canvas__items">
         <div class="src-img">
-          <h2 class="title">Source image</h2>
-          <canvas id="outputCanvas_SRC_IMG"></canvas>
+            <h2 class="title">Source image</h2>
+            <canvas id="outputCanvas_SRC_IMG"></canvas>
         </div>
         <div class="dst_canv">
-          <div class="dst-img">
-            <h2 class="title">Converted image</h2>
-            <canvas id="outputCanvas_DST_IMG"> </canvas>
-          </div>
-          <h2 class="title visible">Channels</h2>
-          <div class="channels visible">
-            <div class="channel-1">
-              <canvas id="outputCanvasChannel_1"></canvas>
-              <button id="channel_btn-1" class="buttons">Save</button>
+            <div class="dst-img">
+                <h2 class="title">Converted image</h2>
+                <canvas id="outputCanvas_DST_IMG"></canvas>
             </div>
-            <div class="channel-2">
-              <canvas id="outputCanvasChannel_2"></canvas>
-              <button id="channel_btn-2" class="buttons">Save</button>
+            <h2 class="title visible">Channels</h2>
+            <div class="channels visible">
+                <div class="channel-1">
+                    <canvas id="outputCanvasChannel_1"></canvas>
+                    <button id="channel_btn-1" class="buttons">Save</button>
+                </div>
+                <div class="channel-2">
+                    <canvas id="outputCanvasChannel_2"></canvas>
+                    <button id="channel_btn-2" class="buttons">Save</button>
+                </div>
+                <div class="channel-3">
+                    <canvas id="outputCanvasChannel_3"></canvas>
+                    <button id="channel_btn-3" class="buttons">Save</button>
+                </div>
             </div>
-            <div class="channel-3">
-              <canvas id="outputCanvasChannel_3"></canvas>
-              <button id="channel_btn-3" class="buttons">Save</button>
-            </div>
-          </div>
         </div>
-      </section>
-    </main>
-    <script async src="../opencvJS/opencv.js"></script>
-    <script type="module" src="js/script.js" async></script>
-  </body>
+    </section>
+</main>
+<script async src="../opencvJS/opencv.js"></script>
+<script type="module" src="js/script.js" async></script>
+</body>
 </html>
